@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
@@ -9,6 +7,10 @@ public class Rocket : MonoBehaviour {
 	AudioSource rocketThrustSound;
 	[SerializeField] float rcsThrust = 100f;
 	[SerializeField] float rcsRotation = 100f;
+	enum States { Alive, Dying, Transcending };
+	States state = States.Alive;
+	int currentScene = 0;
+	[SerializeField] float sceneLoadDelay = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +20,14 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		ProcessInput();
+		if (state != States.Dying)
+		{
+			ProcessInput();
+		}
+		else
+		{
+			rocketThrustSound.Pause();
+		}
 	}
 
 	private void ProcessInput()
@@ -29,15 +38,40 @@ public class Rocket : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
+		if (state != States.Alive) { return; }
+
 		switch (collision.gameObject.tag)
 		{
 			case "Friendly":
-				print("OK");
+				print("Touched launch pad");
+				break;
+			case "Goal":
+				state = States.Transcending;
+				Invoke("LoadNextScene", sceneLoadDelay);
 				break;
 			default:
-				print("dead");
+				state = States.Dying;
+				Invoke("LoadFirstScene", sceneLoadDelay);
 				break;
 		}
+	}
+
+	private void LoadNextScene()
+	{
+		int sceneCount = SceneManager.sceneCountInBuildSettings - 1;
+		print("Loads new Scene... " + sceneCount);
+		if (currentScene <= sceneCount)
+		{
+			currentScene = currentScene + 1;
+		}
+		SceneManager.LoadScene(currentScene, LoadSceneMode.Single);
+	}
+
+	private void LoadFirstScene()
+	{
+		print("Hit obstacle");
+		currentScene = 0;
+		SceneManager.LoadScene(currentScene, LoadSceneMode.Single);
 	}
 
 	private void Thrust()
