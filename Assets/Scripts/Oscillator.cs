@@ -8,7 +8,7 @@ public class Oscillator : MonoBehaviour {
 
 	[SerializeField] Vector3 movingObstacle = new Vector3(10f, 10f, 10f);
 	[SerializeField] float period = 2f;
-	enum CycleRoutines { sideways, bothSides };
+	enum CycleRoutines { oneSide, bothSides };
 	[SerializeField] CycleRoutines currentCycleRoutine;
 
 	[Range(-1, 1)][SerializeField] float movementFactor;
@@ -28,11 +28,11 @@ public class Oscillator : MonoBehaviour {
 		const float tau = Mathf.PI * 2;
 		float rawSinWave = Mathf.Sin(cycles * tau);
 
-		if (currentCycleRoutine == CycleRoutines.bothSides)
+		if (currentCycleRoutine == CycleRoutines.bothSides && period != 0)
 		{
 			movementFactor = rawSinWave; // / 2f + 0.5f;
 		}
-		else if (currentCycleRoutine == CycleRoutines.sideways)
+		else if (currentCycleRoutine == CycleRoutines.oneSide && period != 0)
 		{
 			movementFactor = rawSinWave / 2f + 0.5f; // / 2f + 0.5f;
 		}
