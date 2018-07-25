@@ -213,6 +213,46 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c799009bef84be94d9d80e61b43df00b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &969049201 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1833059579978966, guid: 09b4791e89803214fa641e70f5c5d93b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1705982181}
+--- !u!114 &969049205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 969049201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13907d9a530f2424bbbc4891469e98c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingObstacle: {x: 15, y: 0, z: 0}
+  period: 10
+  currentCycleRoutine: 1
+  movementFactor: 0
+--- !u!1 &1036480383 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1833059579978966, guid: 09b4791e89803214fa641e70f5c5d93b,
+    type: 2}
+  m_PrefabInternal: {fileID: 760017798}
+--- !u!114 &1036480387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1036480383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13907d9a530f2424bbbc4891469e98c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingObstacle: {x: -13, y: 0, z: 0}
+  period: 10
+  currentCycleRoutine: 0
+  movementFactor: 0
 --- !u!1001 &1066113846
 Prefab:
   m_ObjectHideFlags: 0
@@ -281,6 +321,26 @@ Transform:
   m_PrefabParentObject: {fileID: 4703628032234668, guid: 09b4791e89803214fa641e70f5c5d93b,
     type: 2}
   m_PrefabInternal: {fileID: 1066113846}
+--- !u!1 &1244413781 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1833059579978966, guid: 09b4791e89803214fa641e70f5c5d93b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1066113846}
+--- !u!114 &1244413785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1244413781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13907d9a530f2424bbbc4891469e98c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingObstacle: {x: 13, y: 0, z: 0}
+  period: 10
+  currentCycleRoutine: 0
+  movementFactor: 0
 --- !u!1001 &1348378722
 Prefab:
   m_ObjectHideFlags: 0
@@ -320,6 +380,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 82907144507731154, guid: 45cde1dffd4d2fa498b848d9db4b586b,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c8242be3afb65fe45aafa116d2ead63a, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45cde1dffd4d2fa498b848d9db4b586b, type: 2}
   m_IsPrefabParent: 0
