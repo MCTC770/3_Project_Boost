@@ -5,6 +5,9 @@ public class Rocket : MonoBehaviour {
 
 	Rigidbody rigidbodyRocket;
 	AudioSource rocketAudio;
+	int sceneCount;
+	int currentScene;
+	bool debugCollision = false;
 
 	[SerializeField] float rcsThrust = 100f;
 	[SerializeField] float rcsRotation = 100f;
@@ -23,7 +26,6 @@ public class Rocket : MonoBehaviour {
 
 	enum States { Alive, Dying, Transcending };
 	States state = States.Alive;
-	int currentScene = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -45,6 +47,11 @@ public class Rocket : MonoBehaviour {
 	{
 		RespondToThrustInput();
 		RespondToRotateInput();
+		if (Debug.isDebugBuild)
+		{
+			RespondToCollisionDebugToggle();
+			RespondToLevelSkip();
+		}
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -63,7 +70,10 @@ public class Rocket : MonoBehaviour {
 				StartSuccessSequence();
 				break;
 			default:
-				StartDeathSequence();
+				if (debugCollision == false)
+				{
+					StartDeathSequence();
+				}
 				break;
 		}
 	}
@@ -89,12 +99,16 @@ public class Rocket : MonoBehaviour {
 
 	private void LoadNextScene()
 	{
-		int sceneCount = SceneManager.sceneCountInBuildSettings - 1;
-		print("Loads new Scene... " + sceneCount);
-		if (currentScene <= sceneCount)
+		sceneCount = SceneManager.sceneCountInBuildSettings - 1;
+		currentScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+		if (currentScene > sceneCount)
 		{
-			currentScene = currentScene + 1;
+			currentScene = 0;
 		}
+
+		print("Max scene index: " + sceneCount);
+		print("Current scene: " + currentScene);
 		SceneManager.LoadScene(currentScene, LoadSceneMode.Single);
 	}
 
@@ -146,5 +160,30 @@ public class Rocket : MonoBehaviour {
 		}
 
 		rigidbodyRocket.freezeRotation = false;
+	}
+
+	private void RespondToCollisionDebugToggle()
+	{
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			if (debugCollision == true)
+			{
+				debugCollision = false;
+			}
+			else if (debugCollision == false)
+			{
+				debugCollision = true;
+			}
+
+			print("Debug collision: " + debugCollision);
+		}
+	}
+
+	private void RespondToLevelSkip()
+	{
+		if (Input.GetKeyDown(KeyCode.L))
+		{
+			LoadNextScene();
+		}
 	}
 }

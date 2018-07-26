@@ -156,11 +156,6 @@ Prefab:
       propertyPath: m_Name
       value: Launch pad light
       objectReference: {fileID: 0}
-    - target: {fileID: 108274051481764360, guid: 35a8065804a3b374fb5d8d4b62f9d914,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a8065804a3b374fb5d8d4b62f9d914, type: 2}
   m_IsPrefabParent: 0
@@ -277,7 +272,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 108274051481764360, guid: 35a8065804a3b374fb5d8d4b62f9d914,
         type: 2}
-      propertyPath: m_Enabled
+      propertyPath: m_Shadows.m_Type
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -398,7 +393,7 @@ Prefab:
     - target: {fileID: 108447425567037058, guid: c799009bef84be94d9d80e61b43df00b,
         type: 2}
       propertyPath: m_Intensity
-      value: 2
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 4907162219835150, guid: c799009bef84be94d9d80e61b43df00b, type: 2}
       propertyPath: m_LocalScale.z
@@ -424,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingObstacle: {x: 15, y: 0, z: 0}
-  period: 0
+  period: 10
   currentCycleRoutine: 1
   movementFactor: 0
 --- !u!4 &1035509455 stripped
@@ -449,7 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingObstacle: {x: -13, y: 0, z: 0}
-  period: 0
+  period: 10
   currentCycleRoutine: 0
   movementFactor: 0
 --- !u!1001 &1066113846
@@ -537,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingObstacle: {x: 13, y: 0, z: 0}
-  period: 0
+  period: 10
   currentCycleRoutine: 0
   movementFactor: 0
 --- !u!1001 &1348378722
@@ -617,6 +612,11 @@ Prefab:
     - target: {fileID: 4284065416851686, guid: 45cde1dffd4d2fa498b848d9db4b586b, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108259978390303086, guid: 45cde1dffd4d2fa498b848d9db4b586b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45cde1dffd4d2fa498b848d9db4b586b, type: 2}
@@ -705,11 +705,6 @@ Prefab:
     - target: {fileID: 1796532949947408, guid: 35a8065804a3b374fb5d8d4b62f9d914, type: 2}
       propertyPath: m_Name
       value: Landing pad light
-      objectReference: {fileID: 0}
-    - target: {fileID: 108274051481764360, guid: 35a8065804a3b374fb5d8d4b62f9d914,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a8065804a3b374fb5d8d4b62f9d914, type: 2}
@@ -830,11 +825,6 @@ Prefab:
         type: 2}
       propertyPath: m_Intensity
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 108274051481764360, guid: 35a8065804a3b374fb5d8d4b62f9d914,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a8065804a3b374fb5d8d4b62f9d914, type: 2}
@@ -1115,11 +1105,6 @@ Prefab:
         type: 2}
       propertyPath: m_Intensity
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 108274051481764360, guid: 35a8065804a3b374fb5d8d4b62f9d914,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a8065804a3b374fb5d8d4b62f9d914, type: 2}
