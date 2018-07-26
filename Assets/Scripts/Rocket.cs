@@ -24,8 +24,7 @@ public class Rocket : MonoBehaviour {
 	[SerializeField] ParticleSystem deathParticles;
 	[SerializeField] ParticleSystem winParticles;
 
-	enum States { Alive, Dying, Transcending };
-	States state = States.Alive;
+	bool isTransitioning = false;
 
 	// Use this for initialization
 	void Start ()
@@ -37,7 +36,7 @@ public class Rocket : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (state != States.Dying)
+		if (!isTransitioning)
 		{
 			ProcessInput();
 		}
@@ -56,7 +55,7 @@ public class Rocket : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (state != States.Alive)
+		if (isTransitioning)
 		{
 			return;
 		}
@@ -80,7 +79,7 @@ public class Rocket : MonoBehaviour {
 
 	private void StartSuccessSequence()
 	{
-		state = States.Transcending;
+		isTransitioning = true;
 		environmentAudio.volume = environmentAudioVolume;
 		environmentAudio.PlayOneShot(winSound);
 		winParticles.Play();
@@ -89,7 +88,7 @@ public class Rocket : MonoBehaviour {
 
 	private void StartDeathSequence()
 	{
-		state = States.Dying;
+		isTransitioning = true;
 		environmentAudio.volume = environmentAudioVolume;
 		environmentAudio.PlayOneShot(deathSound);
 		deathParticles.Play();
@@ -129,9 +128,14 @@ public class Rocket : MonoBehaviour {
 		}
 		else if (Input.GetKeyUp(KeyCode.Space))
 		{
-			rocketAudio.Stop();
-			thrustingParticles.Stop();
+			StopApplyingThrust();
 		}
+	}
+
+	private void StopApplyingThrust()
+	{
+		rocketAudio.Stop();
+		thrustingParticles.Stop();
 	}
 
 	private void ApplyThrust(float thrustSpeed)
@@ -148,7 +152,7 @@ public class Rocket : MonoBehaviour {
 	{
 		float rotationSpeed = rcsRotation * Time.deltaTime;
 
-		rigidbodyRocket.freezeRotation = true;
+		rigidbodyRocket.angularVelocity = Vector3.zero;
 
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -158,8 +162,6 @@ public class Rocket : MonoBehaviour {
 		{
 			transform.Rotate(Vector3.back * rotationSpeed);
 		}
-
-		rigidbodyRocket.freezeRotation = false;
 	}
 
 	private void RespondToCollisionDebugToggle()
